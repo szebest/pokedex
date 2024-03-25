@@ -1,0 +1,21 @@
+@import "core/variables";
+
+:host {
+  .header {
+    position: sticky;
+    top: 0;
+
+    a {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: $spacing-8;
+      }
+    }
+  }
+
+  .content {
+    margin: $spacing-8;
+  }
+}

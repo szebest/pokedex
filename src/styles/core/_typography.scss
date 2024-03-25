@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+$font-family: "Sora, sans-serif";
+
+$typography-config: mat.define-typography-config(
+  $font-family: $font-family,
+
+  $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $headline-2: mat.define-typography-level(56px, 56px, normal, $letter-spacing: -0.02em),
+  $headline-3: mat.define-typography-level(45px, 48px, normal, $letter-spacing: -0.005em),
+  $headline-4: mat.define-typography-level(34px, 40px, normal),
+  $headline-5: mat.define-typography-level(24px, 32px, normal),
+  $headline-6: mat.define-typography-level(20px, 32px, normal),
+
+  $subtitle-1: mat.define-typography-level(18px, 28px, normal),
+  $subtitle-2: mat.define-typography-level(18px, 24px, normal),
+
+  $body-1: mat.define-typography-level(16px, $font-weight: normal),
+  $body-2: mat.define-typography-level(14px, $font-weight: normal),
+
+  $caption: mat.define-typography-level(12px, $font-weight: 300),
+  $button: mat.define-typography-level(16px, $font-weight: 500),
+);
+
+@include mat.typography-hierarchy($typography-config);

@@ -1,3 +1,11 @@
 <div>
-  <router-outlet />
+  <mat-toolbar color="primary" class="header">
+    <a routerLink="">
+      <img ngSrc="/assets/images/pokeball.webp" width="40" height="40" fetchpriority="high" />
+      <span>Pokédex</span>
+    </a>
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet />
+  </div>
 </div>

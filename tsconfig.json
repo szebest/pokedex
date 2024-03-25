@@ -23,7 +23,10 @@
       "dom"
     ],
     "paths": {
-      "@layout/*": ["./src/app/layout/*"]
+      "@layout/*": ["./src/app/layout/*"],
+      "@core": ["./src/app/core"],
+      "@core/*": ["./src/app/core/*"],
+      "@models": ["./src/app/models"]
     },
   },
   "angularCompilerOptions": {
