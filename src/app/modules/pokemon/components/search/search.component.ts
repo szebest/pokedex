@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { PokemonStore } from '../../store';
+import { SearchService } from '../../services';
 
 @Component({
   selector: 'app-search',
@@ -13,14 +13,22 @@ import { PokemonStore } from '../../store';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
-export class SearchComponent {
-  store = inject(PokemonStore);
+export class SearchComponent implements OnInit {
+  searchService = inject(SearchService);
 
   searchForm = new FormGroup({
-    searchText: new FormControl('', { nonNullable: true })
+    searchText: new FormControl(this.searchService.query, { nonNullable: true })
   });
 
+  ngOnInit(): void {
+    const searchText = this.searchService.initialize();
+
+    this.searchForm.patchValue({ searchText });
+  }
+
   search() {
-    this.store.search(this.searchForm.getRawValue().searchText);
+    const searchText = this.searchForm.getRawValue().searchText;
+
+    this.searchService.search(searchText);
   }
 }
