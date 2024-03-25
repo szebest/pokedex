@@ -1,11 +1,11 @@
-<div class="card" *ngIf="pokemon() as pokemon">
-  <div>
-    <img [ngSrc]="pokemon.imageUrl" width="100" height="100" />
+<div class="card">
+  <div class="image-wrapper">
+    <img [ngSrc]="pokemon().imageUrl" width="125" height="125" loading="lazy" />
   </div>
 
-  <div>
-    <p>#{{pokemon.id}}</p>
+  <div class="content-wrapper">
+    <p>#{{pokemon().id}}</p>
 
-    <h3>{{pokemon.name}}</h3>
+    <h1>{{pokemon().name | titlecase}}</h1>
   </div>
 </div>

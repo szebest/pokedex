@@ -6,14 +6,14 @@ $typography-config: mat.define-typography-config(
   $font-family: $font-family,
 
   $headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
-  $headline-2: mat.define-typography-level(56px, 56px, normal, $letter-spacing: -0.02em),
-  $headline-3: mat.define-typography-level(45px, 48px, normal, $letter-spacing: -0.005em),
-  $headline-4: mat.define-typography-level(34px, 40px, normal),
-  $headline-5: mat.define-typography-level(24px, 32px, normal),
-  $headline-6: mat.define-typography-level(20px, 32px, normal),
+  $headline-2: mat.define-typography-level(56px, 80px, normal, $letter-spacing: -0.02em),
+  $headline-3: mat.define-typography-level(45px, 64px, normal, $letter-spacing: -0.005em),
+  $headline-4: mat.define-typography-level(34px, 56px, normal),
+  $headline-5: mat.define-typography-level(24px, 48px, normal),
+  $headline-6: mat.define-typography-level(20px, 40px, normal),
 
-  $subtitle-1: mat.define-typography-level(18px, 28px, normal),
-  $subtitle-2: mat.define-typography-level(18px, 24px, normal),
+  $subtitle-1: mat.define-typography-level(18px, 36px, normal),
+  $subtitle-2: mat.define-typography-level(18px, 32px, normal),
 
   $body-1: mat.define-typography-level(16px, $font-weight: normal),
   $body-2: mat.define-typography-level(14px, $font-weight: normal),

@@ -1,21 +1,28 @@
 @import "core/variables";
 
 :host {
-  .header {
-    position: sticky;
-    top: 0;
+  .container {
+    .header {
+      position: sticky;
+      top: 0;
 
-    a {
-      display: flex;
-      align-items: center;
+      a {
+        display: flex;
+        align-items: center;
 
-      img {
-        margin-right: $spacing-8;
+        img {
+          margin-right: $spacing-8;
+        }
       }
     }
-  }
 
-  .content {
-    margin: $spacing-8;
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+
+      .content-wrapper {
+        margin: $spacing-8;
+      }
+    }
   }
 }

@@ -1,0 +1,21 @@
+@import "core/colors";
+@import "core/variables";
+
+:host {
+  .card {
+    padding: $spacing-8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: $spacing-8;
+
+    &:hover {
+      border-color: black;
+    }
+
+    .content-wrapper {
+      margin-top: $spacing-8;
+    }
+  }
+}

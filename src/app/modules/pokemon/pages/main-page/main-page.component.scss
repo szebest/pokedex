@@ -1,12 +1,10 @@
+@import "core/variables";
+
 :host {
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    .item {
-      height: 250px;
-      width: 100%;
-    }
+    gap: $spacing-16;
+    grid-template-columns: repeat(auto-fill, minmax(max(13rem, 17%), 1fr));
 
     .empty {
       grid-column: 1 / -1;

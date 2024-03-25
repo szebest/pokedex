@@ -13,8 +13,6 @@ export class SearchService {
 
   query = this.store.filter().query;
 
-  constructor() { }
-
   initialize() {
     const searchQuery = this.route.snapshot.queryParamMap.get('q');
 
@@ -30,6 +28,6 @@ export class SearchService {
   search(searchText: string) {
     this.store.search(searchText);
 
-    this.router.navigate([''], { queryParams: { q: searchText.length !== 0 ? searchText : null }, replaceUrl: true });
+    this.router.navigate([''], { queryParams: { q: searchText.length !== 0 ? searchText : null }, replaceUrl: true, queryParamsHandling: 'merge' });
   }
 }

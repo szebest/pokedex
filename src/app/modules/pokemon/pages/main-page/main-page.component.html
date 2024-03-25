@@ -5,7 +5,7 @@
 
   <div class="container">
     @for (pokemon of filteredPokemons(); track pokemon.name) {
-      <a [routerLink]="[pokemon.id]" class="item">
+      <a [routerLink]="[pokemon.id]">
         <app-pokemon-card [pokemon]="pokemon" />
       </a>
     } @empty {
