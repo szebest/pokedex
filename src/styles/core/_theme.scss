@@ -2,7 +2,9 @@
 
 @include mat.core();
 
-@import "colors";
+$mat-theming-primary: mat.define-palette(mat.$indigo-palette, 500);
+$mat-theming-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$mat-theming-warn: mat.define-palette(mat.$red-palette);
 
 $theme: mat.define-light-theme((
  color: (
@@ -12,4 +14,44 @@ $theme: mat.define-light-theme((
  )
 ));
 
-@include mat.all-component-themes($theme);
+@mixin set-css-variables($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  $primary-contrast: map-get($primary, contrast);
+  $primary: map-remove($primary, contrast);
+
+  $accent-contrast: map-get($accent, contrast);
+  $accent: map-remove($accent, contrast);
+
+  $warn-contrast: map-get($warn, contrast);
+  $warn: map-remove($warn, contrast);
+
+  @each $key, $value in $primary {
+    --primary-#{$key}: #{$value};
+  }
+  @each $key, $value in $accent {
+    --accent-#{$key}: #{$value};
+  }
+  @each $key, $value in $warn {
+    --warn-#{$key}: #{$value};
+  }
+  @each $key, $value in $foreground {
+    --foreground-#{$key}: #{$value};
+  }
+  @each $key, $value in $background {
+    --background-#{$key}: #{$value};
+  }
+}
+
+@mixin theme($theme) {
+  @include mat.all-component-themes($theme);
+  @include set-css-variables($theme);
+}
+
+body {
+  @include theme($theme);
+}
