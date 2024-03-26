@@ -29,7 +29,7 @@ export const PokemonStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed(({ response: { results }, filter: { query } }) => ({
-    filteredPokemons: computed(() => results().filter(x => x.name.toLowerCase().includes(query().toLowerCase())))
+    filteredPokemons: computed(() => results().filter(x => x.name.toLowerCase().includes(query()?.toLowerCase() ?? "")))
   })),
   withMethods((store, pokemonApi = inject(PokemonApiService)) => ({
     async load() {

@@ -1,7 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PokemonStore } from '../store';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +13,23 @@ export class SearchService {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  query = this.store.filter().query;
+  filter = this.store.filter;
 
-  initialize() {
-    const searchQuery = this.route.snapshot.queryParamMap.get('q');
+  constructor() {
+    this.route.queryParams
+      .pipe(
+        takeUntilDestroyed(),
+        tap((params) => {
+          const searchQuery = (params as { q: string | null }).q;
 
-    if (searchQuery === null) {
-      return;
-    }
+          if (searchQuery === null) {
+            return;
+          }
 
-    this.store.search(searchQuery);
-
-    return searchQuery;
+          this.store.search(searchQuery);
+        })
+      )
+      .subscribe();
   }
 
   search(searchText: string) {

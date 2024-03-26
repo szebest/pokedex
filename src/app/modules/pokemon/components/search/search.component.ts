@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,17 +13,17 @@ import { SearchService } from '../../services';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   searchService = inject(SearchService);
 
   searchForm = new FormGroup({
-    searchText: new FormControl(this.searchService.query, { nonNullable: true })
+    searchText: new FormControl("", { nonNullable: true })
   });
 
-  ngOnInit(): void {
-    const searchText = this.searchService.initialize();
-
-    this.searchForm.patchValue({ searchText });
+  constructor() {
+    effect(() => {
+      this.searchForm.patchValue({ searchText: this.searchService.filter().query });
+    })
   }
 
   search() {
