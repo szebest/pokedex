@@ -29,6 +29,8 @@ export class SearchComponent implements OnInit {
   search() {
     const searchText = this.searchForm.getRawValue().searchText;
 
+    if (searchText === undefined) return;
+
     this.searchService.search(searchText);
   }
 }

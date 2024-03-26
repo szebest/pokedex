@@ -11,7 +11,8 @@ $theme: mat.define-light-theme((
    primary: $mat-theming-primary,
    accent: $mat-theming-accent,
    warn: $mat-theming-warn,
- )
+ ),
+ density: minimum
 ));
 
 @mixin set-css-variables($theme) {

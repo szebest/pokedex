@@ -5,19 +5,34 @@
   height: 100%;
 
   .card {
-    padding: $spacing-8;
+    --spacing: #{$spacing-12};
+    --inner-radius-multiplier: 1.5;
+    --border-width: 2px;
+
+    padding-top: var(--spacing);
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid var(--primary-100);
-    border-radius: $spacing-8;
+    border: var(--border-width) solid var(--primary-100);
+    border-radius: calc(var(--spacing) + var(--border-width));
 
     &:hover {
       border-color: var(--primary-200);
     }
 
     .content-wrapper {
-      margin-top: $spacing-8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 100%;
+      padding: var(--spacing) 0;
+
+      background-color: var(--accent-300);
+
+      border-radius: var(--spacing);
+      border-top-left-radius: calc(var(--spacing) * var(--inner-radius-multiplier));
+      border-top-right-radius: calc(var(--spacing) * var(--inner-radius-multiplier));
     }
   }
 }

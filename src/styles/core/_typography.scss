@@ -15,8 +15,8 @@ $typography-config: mat.define-typography-config(
   $subtitle-1: mat.define-typography-level(18px, 36px, normal),
   $subtitle-2: mat.define-typography-level(18px, 32px, normal),
 
-  $body-1: mat.define-typography-level(16px, $font-weight: normal),
-  $body-2: mat.define-typography-level(14px, $font-weight: normal),
+  $body-1: mat.define-typography-level(16px, 20px, normal),
+  $body-2: mat.define-typography-level(14px, 16px, normal),
 
   $caption: mat.define-typography-level(12px, $font-weight: 300),
   $button: mat.define-typography-level(16px, $font-weight: 500),
