@@ -31,15 +31,13 @@ export const PokemonStore = signalStore(
   withComputed(({ response: { results }, filter: { query } }) => ({
     filteredPokemons: computed(() => results().filter(x => x.name.toLowerCase().includes(query().toLowerCase())))
   })),
-  withMethods((store) => ({
+  withMethods((store, pokemonApi = inject(PokemonApiService)) => ({
     async load() {
-      const api = inject(PokemonApiService);
-
       if (store.response.count() > 0) return;
 
       patchState(store, { loading: true });
 
-      const response = await firstValueFrom(api.getPokemons());
+      const response = await firstValueFrom(pokemonApi.getPokemons());
 
       const mappedResults = response.results.map(x => {
         const id = Number(x.url.split('/').at(-2));
