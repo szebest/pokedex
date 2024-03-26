@@ -1,6 +1,6 @@
 <div class="card">
   <div class="image-wrapper">
-    <img #pokemonImage [ngSrc]="pokemon().imageUrl" width="125" height="125" loading="lazy" />
+    <img [alt]="pokemon().name" [ngSrc]="pokemon().imageUrl" width="125" height="125" loading="lazy" />
   </div>
 
   <div class="content-wrapper">
