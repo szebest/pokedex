@@ -1,1 +1,63 @@
-<p>pokemon-page works!</p>
+@if(pokemon$ | async; as pokemon) {
+<div class="wrapper">
+  <h1 class="wrapper__name">{{ pokemon.name | titlecase }}</h1>
+  <div class="wrapper__info">
+    <div class="image-wrapper">
+      <img
+        [src]="pokemon.sprites.front_default ?? ''"
+        loading="eager"
+        class="image-wrapper__image"
+      />
+    </div>
+
+    <div class="info-wrapper">
+      <mat-tab-group>
+        <mat-tab label="Basic">
+          <table>
+            <tbody>
+              <tr>
+                <td>Number</td>
+                <td>{{ pokemon.id.toString().padStart(4, "0") }}</td>
+              </tr>
+              <tr>
+                <td>Type</td>
+                <td>
+                  <div>
+                    @for(type of pokemon.types; track type.type.name) {
+                    <mat-chip [ngStyle]="{ pointerEvents: 'none' }">{{
+                      type.type.name
+                    }}</mat-chip>
+                    }
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Height</td>
+                <td>{{ pokemon.height * 10 }} m</td>
+              </tr>
+              <tr>
+                <td>Weight</td>
+                <td>{{ pokemon.weight / 10 }} kg</td>
+              </tr>
+              <tr>
+                <td>Abilities</td>
+                <td>
+                  <div>
+                    @for(ability of pokemon.abilities; track
+                    ability.ability.name) {
+                    <p>
+                      {{ ability.ability.name }} @if(ability.is_hidden) { -
+                      hidden }
+                    </p>
+                    }
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+} @else { Loading... }
