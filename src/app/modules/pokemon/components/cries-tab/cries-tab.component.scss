@@ -1,0 +1,10 @@
+@import "core/variables";
+
+.cries-wrapper {
+  display: grid;
+  gap: $spacing-16;
+
+  audio {
+    width: 100%;
+  }
+}
