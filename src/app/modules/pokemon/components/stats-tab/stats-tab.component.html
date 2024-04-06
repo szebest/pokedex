@@ -2,7 +2,7 @@
   <tbody>
     @for(stat of pokemon().stats; track stat.stat) {
     <tr>
-      <td>{{ stat.stat.name }}:</td>
+      <td>{{ stat.stat.name | titlecase }}:</td>
       <td>{{ stat.base_stat }}</td>
     </tr>
     }
