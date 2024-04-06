@@ -11,50 +11,23 @@
     </div>
 
     <div class="info-wrapper">
-      <mat-tab-group>
+      <mat-tab-group [dynamicHeight]="true">
         <mat-tab label="Basic">
-          <table>
-            <tbody>
-              <tr>
-                <td>Number</td>
-                <td>{{ pokemon.id.toString().padStart(4, "0") }}</td>
-              </tr>
-              <tr>
-                <td>Type</td>
-                <td>
-                  <div>
-                    @for(type of pokemon.types; track type.type.name) {
-                    <mat-chip [ngStyle]="{ pointerEvents: 'none' }">{{
-                      type.type.name
-                    }}</mat-chip>
-                    }
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Height</td>
-                <td>{{ pokemon.height * 10 }} m</td>
-              </tr>
-              <tr>
-                <td>Weight</td>
-                <td>{{ pokemon.weight / 10 }} kg</td>
-              </tr>
-              <tr>
-                <td>Abilities</td>
-                <td>
-                  <div>
-                    @for(ability of pokemon.abilities; track
-                    ability.ability.name) {
-                    <p>
-                      {{ ability.ability.name }} @if(ability.is_hidden) { -
-                      hidden }
-                    </p>
-                    }
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <section class="info-wrapper__content">
+            <app-basic-tab [pokemon]="pokemon" />
+          </section>
+        </mat-tab>
+
+        <mat-tab label="Stats">
+          <section class="info-wrapper__content">
+            <app-stats-tab [pokemon]="pokemon" />
+          </section>
+        </mat-tab>
+
+        <mat-tab label="Cries">
+          <section class="info-wrapper__content">
+            <app-cries-tab [pokemon]="pokemon" />
+          </section>
         </mat-tab>
       </mat-tab-group>
     </div>

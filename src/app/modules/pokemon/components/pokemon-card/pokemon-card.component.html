@@ -1,11 +1,17 @@
 <div class="card">
   <div class="image-wrapper">
-    <img [alt]="pokemon().name" [ngSrc]="pokemon().imageUrl" width="125" height="125" loading="lazy" />
+    <img
+      [alt]="pokemon().name"
+      [ngSrc]="pokemon().imageUrl"
+      width="125"
+      height="125"
+      loading="lazy"
+    />
   </div>
 
   <div class="content-wrapper">
-    <p class="mat-body-2">#{{pokemon().id}}</p>
+    <p class="mat-body-2">{{ pokemon().id | pokemonId }}</p>
 
-    <p class="mat-h1">{{pokemon().name | titlecase}}</p>
+    <p class="mat-h1">{{ pokemon().name | titlecase }}</p>
   </div>
 </div>
