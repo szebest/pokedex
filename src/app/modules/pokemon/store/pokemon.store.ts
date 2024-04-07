@@ -1,5 +1,11 @@
 import { computed, inject } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -19,7 +25,7 @@ const initialState: PokemonState = {
     results: [],
     count: 0,
     next: null,
-    previous: null
+    previous: null,
   },
   loading: false,
   filter: { query: '' },
@@ -29,7 +35,11 @@ export const PokemonStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed(({ response: { results }, filter: { query } }) => ({
-    filteredPokemons: computed(() => results().filter(x => x.name.toLowerCase().includes(query()?.toLowerCase() ?? "")))
+    filteredPokemons: computed(() =>
+      results().filter((x) =>
+        x.name.toLowerCase().includes(query()?.toLowerCase() ?? '')
+      )
+    ),
   })),
   withMethods((store, pokemonApi = inject(PokemonApiService)) => ({
     async load() {
@@ -39,7 +49,7 @@ export const PokemonStore = signalStore(
 
       const response = await firstValueFrom(pokemonApi.getPokemons());
 
-      const mappedResults = response.results.map(x => {
+      const mappedResults = response.results.map((x) => {
         const id = Number(x.url.split('/').at(-2));
 
         const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
@@ -47,7 +57,10 @@ export const PokemonStore = signalStore(
         return { ...x, imageUrl, id };
       });
 
-      patchState(store, { response: { ...response, results: mappedResults }, loading: false });
+      patchState(store, {
+        response: { ...response, results: mappedResults },
+        loading: false,
+      });
     },
     search(query: string) {
       patchState(store, (state) => ({ filter: { ...state.filter, query } }));

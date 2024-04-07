@@ -6,11 +6,10 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { PokemonApiService } from '../../api';
+import { PokemonDetailsStore } from '../../store';
 import { SinglePokemonResponse } from '../../models';
 import {
   BasicTabComponent,
@@ -32,25 +31,24 @@ import {
   styleUrl: './pokemon-page.component.scss',
 })
 export class PokemonPageComponent {
-  api = inject(PokemonApiService);
+  store = inject(PokemonDetailsStore);
 
   pokemonId = input.required({
     alias: 'id',
     transform: numberAttribute,
   });
 
-  pokemon$: Observable<SinglePokemonResponse> | null = null;
-
-  getPlaylist(pokemon: SinglePokemonResponse) {
-    return Object.entries(pokemon.cries).map((x) => ({
-      title: x[0],
-      link: x[1],
-    }));
-  }
+  pokemon: SinglePokemonResponse | undefined = undefined;
+  loading = this.store.loading;
 
   constructor() {
-    effect(() => {
-      this.pokemon$ = this.api.getPokemonByNameOrId(this.pokemonId());
-    });
+    effect(
+      async () => {
+        await this.store.loadSingle(this.pokemonId());
+
+        this.pokemon = this.store.pokemons().get(this.pokemonId());
+      },
+      { allowSignalWrites: true }
+    );
   }
 }

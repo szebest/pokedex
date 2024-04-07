@@ -1,4 +1,4 @@
-@if(pokemon$ | async; as pokemon) {
+@if(!loading() && pokemon) {
 <div class="wrapper">
   <h1 class="wrapper__name">{{ pokemon.name | titlecase }}</h1>
   <div class="wrapper__info">
