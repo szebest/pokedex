@@ -18,6 +18,7 @@
 
     .image-wrapper {
       margin-bottom: var(--spacing);
+      min-height: 125px;
     }
 
     &:hover {
@@ -37,8 +38,12 @@
       background-color: var(--accent-300);
 
       border-radius: var(--spacing);
-      border-top-left-radius: calc(var(--spacing) * var(--inner-radius-multiplier));
-      border-top-right-radius: calc(var(--spacing) * var(--inner-radius-multiplier));
+      border-top-left-radius: calc(
+        var(--spacing) * var(--inner-radius-multiplier)
+      );
+      border-top-right-radius: calc(
+        var(--spacing) * var(--inner-radius-multiplier)
+      );
     }
   }
 }
