@@ -1,9 +1,30 @@
 @import "core/variables";
 
 :host {
+  .center {
+    margin: 0 auto;
+  }
+
+  .error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-16;
+  }
+
+  > *:not(.wrapper) {
+    margin-top: $spacing-32;
+  }
+
   .wrapper {
-    &__name {
-      margin: 0 auto;
+    &__header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: $spacing-48;
+      margin-bottom: $spacing-16;
     }
 
     &__info {

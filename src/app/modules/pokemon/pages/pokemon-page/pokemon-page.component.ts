@@ -5,17 +5,20 @@ import {
   input,
   numberAttribute,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { PokemonDetailsStore } from '../../store';
-import { SinglePokemonResponse } from '../../models';
 import {
   BasicTabComponent,
   CriesTabComponent,
   StatsTabComponent,
 } from '../../components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -23,6 +26,10 @@ import {
   imports: [
     CommonModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+
     BasicTabComponent,
     CriesTabComponent,
     StatsTabComponent,
@@ -32,23 +39,33 @@ import {
 })
 export class PokemonPageComponent {
   store = inject(PokemonDetailsStore);
+  router = inject(Router);
+  location = inject(Location);
 
   pokemonId = input.required({
     alias: 'id',
     transform: numberAttribute,
   });
 
-  pokemon: SinglePokemonResponse | undefined = undefined;
+  currentPokemonKey = this.store.currentPokemonKey;
+  pokemon = this.store.currentPokemon;
   loading = this.store.loading;
+  error = this.store.error;
 
   constructor() {
     effect(
       async () => {
         await this.store.loadSingle(this.pokemonId());
-
-        this.pokemon = this.store.pokemons().get(this.pokemonId());
       },
       { allowSignalWrites: true }
     );
+  }
+
+  onNextPokemon(offset: number) {
+    this.router.navigate([`${this.pokemonId() + offset}`]);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

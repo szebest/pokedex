@@ -1,6 +1,19 @@
-@if(!loading() && pokemon) {
+@if(!loading() && currentPokemonKey() === pokemonId() && pokemon() && !error())
+{ @if (pokemon(); as pokemon) {
 <div class="wrapper">
-  <h1 class="wrapper__name">{{ pokemon.name | titlecase }}</h1>
+  <div class="wrapper__header">
+    <button
+      mat-mini-fab
+      aria-label="Previous pokemon"
+      (click)="onNextPokemon(-1)"
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <h1 class="wrapper__header__text">{{ pokemon.name | titlecase }}</h1>
+    <button mat-mini-fab aria-label="Next pokemon" (click)="onNextPokemon(1)">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
   <div class="wrapper__info">
     <div class="image-wrapper">
       <img
@@ -33,4 +46,11 @@
     </div>
   </div>
 </div>
-} @else { Loading... }
+} } @else if(!error()) {
+<mat-spinner class="center" />
+} @else {
+<div class="center error">
+  <h3>No pokemon with given id exists!</h3>
+  <button mat-flat-button color="warn" (click)="goBack()">Go back</button>
+</div>
+}
