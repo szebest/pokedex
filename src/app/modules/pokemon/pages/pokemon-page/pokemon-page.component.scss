@@ -41,6 +41,7 @@
       container-type: inline-size;
 
       .image-wrapper {
+        position: relative;
         border-color: var(--primary-100);
         border-style: solid;
         border-width: 0px;
@@ -54,6 +55,7 @@
         &__image {
           object-fit: contain;
           min-width: 100%;
+          max-width: 100%;
           aspect-ratio: 1 / 1;
         }
       }

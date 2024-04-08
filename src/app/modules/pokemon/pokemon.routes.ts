@@ -1,18 +1,23 @@
 import { Routes, UrlSegment } from '@angular/router';
 
-import { MainPageComponent, PokemonPageComponent } from './pages';
-
 export const POKEMON_ROUTES: Routes = [
   {
     path: '',
-    component: MainPageComponent
+    loadComponent: () =>
+      import('./pages/main-page/main-page.component').then(
+        (r) => r.MainPageComponent
+      ),
   },
   {
     path: ':id',
-    component: PokemonPageComponent,
+    loadComponent: () =>
+      import('./pages/pokemon-page/pokemon-page.component').then(
+        (r) => r.PokemonPageComponent
+      ),
     canMatch: [
       // only allow to match when path is a number
-      (_: never, segments: UrlSegment[]) => segments[0].path === String(Number(segments[0].path))
-    ]
-  }
+      (_: never, segments: UrlSegment[]) =>
+        segments[0].path === String(Number(segments[0].path)),
+    ],
+  },
 ];

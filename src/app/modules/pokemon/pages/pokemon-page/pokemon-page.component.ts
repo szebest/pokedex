@@ -5,7 +5,7 @@ import {
   input,
   numberAttribute,
 } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, Location, NgOptimizedImage } from '@angular/common';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -29,6 +29,7 @@ import { Router } from '@angular/router';
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
+    NgOptimizedImage,
 
     BasicTabComponent,
     CriesTabComponent,

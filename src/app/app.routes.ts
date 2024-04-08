@@ -6,10 +6,11 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    loadChildren: () => import('./modules/pokemon/pokemon.routes').then(r => r.POKEMON_ROUTES)
+    loadChildren: () =>
+      import('./modules/pokemon/pokemon.routes').then((r) => r.POKEMON_ROUTES),
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];

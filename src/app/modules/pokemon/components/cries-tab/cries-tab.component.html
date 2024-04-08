@@ -1,6 +1,9 @@
 <div class="cries-wrapper">
+  @if (pokemon().cries.latest; as latestCry) {
   <p>Latest:</p>
-  <audio controls [src]="pokemon().cries.latest"></audio>
+  <audio controls [src]="latestCry"></audio>
+  } @if (pokemon().cries.legacy; as legacyCry) {
   <p>Legacy:</p>
-  <audio controls [src]="pokemon().cries.legacy"></audio>
+  <audio controls [src]="legacyCry"></audio>
+  }
 </div>
